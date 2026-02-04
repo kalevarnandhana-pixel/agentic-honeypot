@@ -10,6 +10,12 @@ from app.callback import send_final_callback
 
 app = FastAPI()
 
+@app.post("/")
+async def root_health_check(api_key=Depends(verify_api_key)):
+    return {
+        "status": "success",
+        "message": "Agentic Honeypot API is live and secured."
+    }
 
 def should_terminate(session):
     intel = session["intelligence"]
